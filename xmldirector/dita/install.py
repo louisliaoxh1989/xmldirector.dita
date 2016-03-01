@@ -59,7 +59,8 @@ def install_converter(converter='dita'):
 
 def main():
 
-    shutil.rmtree(target_directory)
+    if os.path.exists(target_directory):
+        shutil.rmtree(target_directory)
     os.makedirs(target_directory)
 
     install_converter('dita')
