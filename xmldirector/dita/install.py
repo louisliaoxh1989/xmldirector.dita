@@ -47,7 +47,7 @@ def install_converter(converter='dita'):
             with open(target_fn, 'wb') as fp_out:
                 fp_out.write(fp.read(name))
     
-    for dirpath, dirnames, filesnames in os.walk(target_directory):
+    for dirpath, dirnames, filenames in os.walk(target_directory):
         for filename in filenames:
             filename = os.path.join(dirpath, filename)
             if '/bin/' in filename:
