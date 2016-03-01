@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+"topic.dtd">
+<topic id="bgcolor">
+  <title>Giving a background color to table cells</title>
+
+  <shortdesc>This chapter explains how you can give a background color to
+  table cells by adding a <tt>bgcolor(<i>color</i>)</tt> directive to the
+  <tt>outputclass</tt> attribute of most table elements.</shortdesc>
+
+  <body>
+    <p>It's possible to give a background color to table
+    cells<indexterm>table, background color</indexterm> by adding a
+    <tt>bgcolor(<i>color</i>)</tt> directive, where <i>color</i> is any CSS
+    color value, to the <tt>outputclass</tt> attribute of the following
+    elements:</p>
+
+    <dl>
+      <dlentry>
+        <dt>Inside a <tt>simpletable</tt> element</dt>
+
+        <dd><tt>simpletable</tt>, <tt>sthead</tt>, <tt>strow</tt>,
+        <tt>stentry</tt>.</dd>
+      </dlentry>
+
+      <dlentry>
+        <dt>Inside a <tt>table</tt> element</dt>
+
+        <dd><tt>tgroup</tt>, <tt>thead</tt>, <tt>tbody</tt>, <tt>row</tt>,
+        <tt>entry</tt>.</dd>
+      </dlentry>
+    </dl>
+
+    <p>Example:</p>
+
+    <pre outputclass="language-xml">&lt;table&gt;
+  &lt;tgroup cols="2" <b>outputclass="bgcolor(#F0FFFF)"</b>&gt;
+    &lt;tbody&gt;
+      &lt;row&gt;
+        &lt;entry&gt;C1,1&lt;/entry&gt;
+        &lt;entry&gt;C1,2&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row <b>outputclass="bgcolor(#FFFFF0)"</b>&gt;
+        &lt;entry&gt;C2,1&lt;/entry&gt;
+        &lt;entry&gt;C2,2&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/tbody&gt;
+  &lt;/tgroup&gt;
+&lt;/table&gt;</pre>
+
+    <p>Note that it is still possible to specify any class name you want in
+    the <tt>outputclass</tt> attribute of a table element. Example:
+    <tt>&lt;simpletable outputclass="bgcolor(#FFFFF0)
+    fancy-table"&gt;</tt>.</p>
+  </body>
+</topic>

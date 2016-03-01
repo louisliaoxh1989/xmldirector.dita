@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE subjectScheme PUBLIC "-//OASIS//DTD DITA Subject Scheme Map//EN"
+"subjectScheme.dtd">
+<subjectScheme>
+  <subjectdef keys="svg_support">
+    <subjectdef keys="svg=no"/>
+
+    <subjectdef keys="svg=yes"/>
+  </subjectdef>
+
+  <enumerationdef>
+    <elementdef name="image"/>
+
+    <attributedef name="otherprops"/>
+
+    <subjectdef keys="svg_support"/>
+  </enumerationdef>
+
+  <subjectdef keys="products">
+    <subjectdef keys="XXE"/>
+  </subjectdef>
+
+  <enumerationdef>
+    <attributedef name="product"/>
+
+    <subjectdef keys="products"/>
+  </enumerationdef>
+</subjectScheme>

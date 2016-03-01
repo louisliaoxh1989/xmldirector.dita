@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><title>Giving a background color to table cells</title><link rel="stylesheet" type="text/css" href="resources/eclipsehelp.css"></link><meta name="description" content="This chapter explains how you can give a background color to table cells by adding a bgcolor(color) directive to the outputclass attribute of most table elements."></meta><meta name="generator" content="XMLmind DITA Converter 2.5.8_01"></meta></head><body><div id="bgcolor" class="topic"><h2 class="chapter-title">Giving a background color to table cells</h2><p class="shortdesc">This chapter explains how you can give a background color to
+  table cells by adding a <tt class="tt">bgcolor(<i class="i">color</i>)</tt> directive to the
+  <tt class="tt">outputclass</tt> attribute of most table elements.</p><div class="body"><div class="p">It's possible to give a background color to table
+    cells<a id="bgcolor__I_tezdln_" name="bgcolor__I_tezdln_"></a> by adding a
+    <tt class="tt">bgcolor(<i class="i">color</i>)</tt> directive, where <i class="i">color</i> is any CSS
+    color value, to the <tt class="tt">outputclass</tt> attribute of the following
+    elements:</div><dl class="dl"><dt class="dt">Inside a <tt class="tt">simpletable</tt> element</dt><dd class="dd"><tt class="tt">simpletable</tt>, <tt class="tt">sthead</tt>, <tt class="tt">strow</tt>,
+        <tt class="tt">stentry</tt>.</dd><dt class="dt">Inside a <tt class="tt">table</tt> element</dt><dd class="dd"><tt class="tt">tgroup</tt>, <tt class="tt">thead</tt>, <tt class="tt">tbody</tt>, <tt class="tt">row</tt>,
+        <tt class="tt">entry</tt>.</dd></dl><div class="p">Example:</div><pre class="pre language-xml"><span class="hl-tag">&lt;table&gt;</span>
+  <span class="hl-tag">&lt;tgroup</span> <span class="hl-attribute">cols</span>=<span class="hl-value">"2"</span> <b class="b">outputclass="bgcolor(#F0FFFF)"</b>&gt;
+    <span class="hl-tag">&lt;tbody&gt;</span>
+      <span class="hl-tag">&lt;row&gt;</span>
+        <span class="hl-tag">&lt;entry&gt;</span>C1,1<span class="hl-tag">&lt;/entry&gt;</span>
+        <span class="hl-tag">&lt;entry&gt;</span>C1,2<span class="hl-tag">&lt;/entry&gt;</span>
+      <span class="hl-tag">&lt;/row&gt;</span>
+      <span class="hl-tag">&lt;row</span> <b class="b">outputclass="bgcolor(#FFFFF0)"</b>&gt;
+        <span class="hl-tag">&lt;entry&gt;</span>C2,1<span class="hl-tag">&lt;/entry&gt;</span>
+        <span class="hl-tag">&lt;entry&gt;</span>C2,2<span class="hl-tag">&lt;/entry&gt;</span>
+      <span class="hl-tag">&lt;/row&gt;</span>
+    <span class="hl-tag">&lt;/tbody&gt;</span>
+  <span class="hl-tag">&lt;/tgroup&gt;</span>
+<span class="hl-tag">&lt;/table&gt;</span></pre><div class="p">Note that it is still possible to specify any class name you want in
+    the <tt class="tt">outputclass</tt> attribute of a table element. Example:
+    <tt class="tt">&lt;simpletable outputclass="bgcolor(#FFFFF0)
+    fancy-table"&gt;</tt>.</div></div></div></body></html>
