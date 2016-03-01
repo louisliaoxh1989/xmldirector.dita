@@ -7,8 +7,6 @@ long_description = \
     open(os.path.join("docs", "source", "README.rst")).read() + "\n" + \
     open(os.path.join("docs", "source", "HISTORY.rst")).read()
 
-open('out.rst', 'wb').write(long_description)
-
 setup(name='xmldirector.dita',
       version=version,
       description="XML-Director DITA conversion",

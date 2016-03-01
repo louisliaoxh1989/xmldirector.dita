@@ -4,6 +4,8 @@
 ################################################################
 
 
+from __future__ import print_function
+
 import os
 import stat
 import tempfile
@@ -23,7 +25,7 @@ DITAC = 'http://www.xmlmind.com/ditac/_download/ditac-2_5_8_01.zip'
 def install_converter(converter='dita'):
 
     url = DITA if converter == 'dita' else DITAC
-    print 'Downloading {}'.format(url)
+    print('Downloading {}'.format(url))
 
     out_fn = tempfile.mktemp(suffix='.zip')
     r = requests.get(url, stream=True)
@@ -34,7 +36,7 @@ def install_converter(converter='dita'):
                 f.write(chunk)
                 f.flush()
 
-    print 'Installing {}'.format(url)
+    print('Installing {}'.format(url))
     with zipfile.ZipFile(out_fn, 'r') as fp:
         for name in fp.namelist():
             if name.endswith('/'):
@@ -66,7 +68,7 @@ def main():
     install_converter('dita')
     install_converter('ditac')
 
-    print 'Done'
+    print('Done')
 
 if __name__ == '__main__':
     main()
