@@ -13,7 +13,10 @@ cwd = os.path.abspath(os.path.dirname(__file__))
 DITA = os.path.join(cwd, 'converters', 'dita', 'bin', 'dita')
 DITAC = os.path.join(cwd, 'converters', 'ditac', 'bin', 'ditac')
 
-
+@plac.annotations(
+    ditamap=("Path of the DITA Map file", 'option', 'd', str),
+    output=("Output directory or file", 'option', 'o', str),
+    converter=("DITA converter to be used: dita or ditac", "option", 'c', str))
 def dita2html(ditamap, output=None, converter='dita'):
 
     if converter not in ('dita', 'ditac'):
