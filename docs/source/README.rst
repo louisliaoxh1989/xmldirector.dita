@@ -3,6 +3,26 @@ xmldirector.dita
 
 DITA conversion support for XML Director
 
+This module packages the 
+
+- DITA Open Toolkit
+- XMLMind DITA Converter
+
+as Python module.
+
+The module provides the following API::
+
+    result = xmldirector.dita.converter.dita2html(ditamap, output_dir_or_file, converter)
+
+Parameters
+++++++++++
+
+- ``ditamap`` - path to DITA map file
+- ``output_dir_or_file`` - output directory (DITA) or output filename (DITAC)
+- ``converter`` - name of the converter to be used (``dita`` for DITA OT or ``ditac`` for 
+   XMLMind Dita converter)
+
+
 License
 -------
 This package is published under the GNU Public License V2 (GPL 2)

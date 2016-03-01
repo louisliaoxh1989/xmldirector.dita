@@ -29,10 +29,11 @@ setup(name='xmldirector.dita',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plac'
       ],
       tests_require=['zope.testing'],
       entry_points="""
-      [z3c.autoinclude.plugin]
-      target = plone
+      [console_scripts]
+      dita2html= xmldirector.dita.converter:main
       """,
       )

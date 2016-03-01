@@ -5,6 +5,8 @@ import subprocess
 import plac
 
 from xmldirector.dita import util
+from xmldirector.dita.logger import LOG
+
 
 cwd = os.path.abspath(os.path.dirname(__file__))
 DITA = os.path.join(cwd, 'converters', 'dita', 'bin', 'dita')
@@ -23,10 +25,18 @@ def dita2html(ditamap, output=None, converter='dita'):
     else:
         cmd = '"{}" -c single  -f xhtml "{}" "{}"'.format(DITAC, output, ditamap)
 
-    print cmd
+    LOG.info(cmd)
     status, output = util.runcmd(cmd)
-    print status
-    print output
+    if status != 0:
+        LOG.error(output)
+        raise RuntimeError('Execution of "{}" failed (status {})'.format(cmd, status))
+
+    return output
+
+
+def main():
+    import plac; plac.call(dita2html)
+
 
 if __name__ == '__main__':
-    import plac; plac.call(dita2html)
+    main()
