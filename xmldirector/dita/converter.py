@@ -6,6 +6,7 @@ import plac
 
 from xmldirector.dita import util
 from xmldirector.dita.logger import LOG
+from xmldirector.dita import install
 
 
 cwd = os.path.abspath(os.path.dirname(__file__))
@@ -19,10 +20,19 @@ def dita2html(ditamap, output=None, converter='dita'):
         raise ValueError('Unknown DITA converter "{}"'.format(converter))
 
     if converter == 'dita':
+
+        if not os.path.exists(DITA):
+            install.install_converter('dita')
+
         if not output:
             output = tempfile.mkdtemp()
         cmd = '"{}" -f html5 -i "{}" -o "{}" -Droot-chunk-override=to-content'.format(DITA, ditamap, output)
+
     else:
+
+        if not os.path.exists(DITAC):
+            install.install_converter('ditac')
+
         cmd = '"{}" -c single  -f xhtml "{}" "{}"'.format(DITAC, output, ditamap)
 
     LOG.info(cmd)
