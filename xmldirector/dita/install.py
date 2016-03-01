@@ -19,7 +19,7 @@ cwd = os.path.abspath(os.path.dirname(__file__))
 target_directory = os.path.join(cwd, 'converters')
 
 DITA = 'https://github.com/dita-ot/dita-ot/releases/download/2.2.1/dita-ot-2.2.1.zip'
-DITAC = 'http://www.xmlmind.com/ditac/_download/ditac-2_5_8_01.zip'
+DITAC = 'http://www.xmlmind.com/ditac/_download/ditac-2_5_8_01-plus-fop.zip'
 
 
 def install_converter(converter='dita'):
