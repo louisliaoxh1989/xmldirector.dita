@@ -3,11 +3,16 @@ from setuptools import setup, find_packages
 
 version = '0.0.1'
 
+long_description = \
+    open(os.path.join("docs", "source", "README.rst")).read() + "\n" + \
+    open(os.path.join("docs", "source", "HISTORY.rst")).read()
+
+open('out.rst', 'wb').write(long_description)
+
 setup(name='xmldirector.dita',
       version=version,
       description="XML-Director DITA conversion",
-      long_description=open(os.path.join("docs", "source", "README.rst")).read() + "\n" +
-      open(os.path.join("docs", "source", "HISTORY.rst")).read(),
+      long_description=long_description,
       # Get more strings from
       # http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[

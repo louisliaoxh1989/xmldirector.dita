@@ -10,12 +10,13 @@ This module packages the
 
 as Python module.
 
+API
+---
+
 The module provides the following API::
 
     result = xmldirector.dita.converter.dita2html(ditamap, output_dir_or_file, converter)
 
-Parameters
-++++++++++
 
 - ``ditamap`` - path to DITA map file
 - ``output_dir_or_file`` - output directory (DITA) or output filename (DITAC)
