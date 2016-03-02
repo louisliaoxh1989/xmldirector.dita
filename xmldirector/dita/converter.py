@@ -62,7 +62,7 @@ def dita2html(ditamap='', output=None, converter='dita', overwrite=False):
         LOG.error(cmd_output)
         raise RuntimeError('Execution of "{}" failed (status {})'.format(cmd, status))
 
-    return cmd_output
+    return output
 
 
 def main():
