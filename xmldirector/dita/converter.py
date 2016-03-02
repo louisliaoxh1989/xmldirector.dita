@@ -2,6 +2,7 @@
 import os
 import tempfile
 import subprocess
+import shutil
 import plac
 
 from xmldirector.dita import util
@@ -13,17 +14,29 @@ cwd = os.path.abspath(os.path.dirname(__file__))
 DITA = os.path.join(cwd, 'converters', 'dita', 'bin', 'dita')
 DITAC = os.path.join(cwd, 'converters', 'ditac', 'bin', 'ditac')
 
+
 @plac.annotations(
     ditamap=("Path of the DITA Map file", 'option', 'd', str),
     output=("Output directory or file", 'option', 'o', str),
-    converter=("DITA converter to be used: dita or ditac", "option", 'c', str))
-def dita2html(ditamap='', output=None, converter='dita'):
+    converter=("DITA converter to be used: dita or ditac", "option", 'c', str),
+    overwrite=("Overwrite existing output directory/file(s)", "flag", 'f', bool))
+def dita2html(ditamap='', output=None, converter='dita', overwrite=False):
 
     if converter not in ('dita', 'ditac'):
         raise ValueError('Unknown DITA converter "{}"'.format(converter))
 
     if not ditamap or not os.path.exists(ditamap):
         raise IOError('DITA mapfile "{}" does not exist'.format(ditamap))
+
+    if os.path.exists(output):
+        if not overwrite:
+            raise IOError('Output directory/file "{}" already exists (use --overwrite for cleanup)'.format(output))
+        if os.path.isdir(output):
+            shutil.rmtree(output)
+        else:
+            os.remove(output)
+
+    output = os.path.abspath(output)
 
     if converter == 'dita':
 
