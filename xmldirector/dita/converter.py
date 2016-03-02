@@ -17,10 +17,13 @@ DITAC = os.path.join(cwd, 'converters', 'ditac', 'bin', 'ditac')
     ditamap=("Path of the DITA Map file", 'option', 'd', str),
     output=("Output directory or file", 'option', 'o', str),
     converter=("DITA converter to be used: dita or ditac", "option", 'c', str))
-def dita2html(ditamap, output=None, converter='dita'):
+def dita2html(ditamap='', output=None, converter='dita'):
 
     if converter not in ('dita', 'ditac'):
         raise ValueError('Unknown DITA converter "{}"'.format(converter))
+
+    if not ditamap or not os.path.exists(ditamap):
+        raise IOError('DITA mapfile "{}" does not exist'.format(ditamap))
 
     if converter == 'dita':
 
