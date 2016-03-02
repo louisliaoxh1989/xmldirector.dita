@@ -28,15 +28,13 @@ def dita2html(ditamap='', output=None, converter='dita', overwrite=False):
     if not ditamap or not os.path.exists(ditamap):
         raise IOError('DITA mapfile "{}" does not exist'.format(ditamap))
 
-    if os.path.exists(output):
+    if output and os.path.exists(output):
         if not overwrite:
             raise IOError('Output directory/file "{}" already exists (use --overwrite for cleanup)'.format(output))
         if os.path.isdir(output):
             shutil.rmtree(output)
         else:
             os.remove(output)
-
-    output = os.path.abspath(output)
 
     if converter == 'dita':
 
@@ -45,6 +43,7 @@ def dita2html(ditamap='', output=None, converter='dita', overwrite=False):
 
         if not output:
             output = tempfile.mkdtemp()
+            output = os.path.abspath(output)
         cmd = '"{}" -f html5 -i "{}" -o "{}" -Droot-chunk-override=to-content'.format(DITA, ditamap, output)
 
     else:
@@ -52,15 +51,18 @@ def dita2html(ditamap='', output=None, converter='dita', overwrite=False):
         if not os.path.exists(DITAC):
             install.install_converter('ditac')
 
+        if not output:
+            output = tempfile.mktemp(suffix='.html')
+
         cmd = '"{}" -c single  -f xhtml "{}" "{}"'.format(DITAC, output, ditamap)
 
     LOG.info(cmd)
-    status, output = util.runcmd(cmd)
+    status, cmd_output= util.runcmd(cmd)
     if status != 0:
-        LOG.error(output)
+        LOG.error(cmd_output)
         raise RuntimeError('Execution of "{}" failed (status {})'.format(cmd, status))
 
-    return output
+    return cmd_output
 
 
 def main():
