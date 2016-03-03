@@ -23,6 +23,21 @@ The module provides the following API::
 - ``converter`` - name of the converter to be used (``dita`` for DITA OT or ``ditac`` for 
    XMLMind Dita converter)
 
+Commandline usage
+-----------------
+
+You can start a DITA conversion from the commandline::
+
+  > bin/dita2html -d some.ditamap -o output_directory -c dita|ditac
+
+- ``-d`` - path to DITA map file
+- ``-o`` - name of output directory (for DITA-OT) or the HTML output file
+  (XMLMind DITAC)
+- ``-c`` - name of the converter to be used (``dita`` for DITA OT or ``ditac`` for 
+   XMLMind Dita converter)
+
+  
+
 
 License
 -------

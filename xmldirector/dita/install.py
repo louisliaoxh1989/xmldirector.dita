@@ -12,8 +12,11 @@ import tempfile
 import shutil
 import zipfile
 
-from clint.textui import progress
 import requests
+from clint.textui import progress
+
+from xmldirector.dita import util
+
 
 cwd = os.path.abspath(os.path.dirname(__file__))
 target_directory = os.path.join(cwd, 'converters')
@@ -23,6 +26,11 @@ DITAC = 'http://www.xmlmind.com/ditac/_download/ditac-2_5_8_01-plus-fop.zip'
 
 
 def install_converter(converter='dita'):
+
+    java = util.which('java')
+    java2 = os.path.exists(os.path.join(os.environ.get('JAVA_HOME'), 'bin', 'java'))
+    if not java and not java2:
+        raise RuntimeError('Please check your Java installation for $JAVA_HOME settings')
 
     url = DITA if converter == 'dita' else DITAC
     print('Downloading {}'.format(url))
