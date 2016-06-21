@@ -34,13 +34,13 @@ setup(name='xmldirector.dita',
           'setuptools',
           'clint',
           'requests',
-          'which',
           'plac'
       ],
       tests_require=['zope.testing'],
       entry_points="""
       [console_scripts]
-      dita2html= xmldirector.dita.converter:main
-      dita-install= xmldirector.dita.install:main
+      dita2html=xmldirector.dita.converter:main
+      dita-install=xmldirector.dita.install:main
+      html2dita=xmldirector.dita.html2dita:main
       """,
       )

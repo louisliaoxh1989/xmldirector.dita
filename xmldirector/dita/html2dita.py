@@ -4,8 +4,10 @@
 ################################################################
 
 
-import tempfile
+import os
+import plac
 import shutil
+import tempfile
 import pkg_resources
 
 from xmldirector.dita import util
@@ -20,13 +22,23 @@ h2d_xsl = pkg_resources.resource_filename('xmldirector.dita.converters.h2d', 'h2
 info_types = ('topic', 'concept', 'reference', 'task')
 
 
-def html2dita(html_filename, infotype, output_filename=None):
+@plac.annotations(
+    html_filename=("Input HTML filename", 'option', 'i', str),
+    output_filename=("Output DITA filename", 'option', 'o', str),
+    infotype=("DITA type (topic, concept, reference, task)", "option", 'f', str))
+def html2dita(html_filename, infotype='topic', output_filename=None):
 
     if not infotype in info_types:
         raise ValueError('Unsupported infotype "{}"'.format(infotype))
 
     if not output_filename:
         output_filename = tempfile.mktemp(suffix='.dita')
+
+    if not html_filename:
+        raise ValueError('No HTML input filename given')
+
+    if not os.path.exists(html_filename):
+        raise ValueError('No HTML input filename {} does not exist'.format(html_filename))
 
     cmd = '"{saxon}" "{html_filename}" "{h2d_xsl}" infotype={infotype} >"{output_filename}"'.format(
             saxon=saxon,
@@ -41,6 +53,9 @@ def html2dita(html_filename, infotype, output_filename=None):
     return output_filename
 
 
+def main():
+    import plac; plac.call(html2dita)
+
+
 if __name__ == '__main__':
-    import sys
-    html2dita(sys.argv[-1], 'topic')
+    main()
