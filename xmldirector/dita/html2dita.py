@@ -48,6 +48,7 @@ def html2dita(html_filename, infotype='topic', output_filename=None):
             'doctype': 'omit',
             'output_xhtml': 1,
             })
+        html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
 
     html_tmp = tempfile.mktemp(suffix='.html')
     with open(html_tmp, 'wb') as fp:
