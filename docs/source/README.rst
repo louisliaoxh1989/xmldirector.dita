@@ -66,11 +66,11 @@ This package is published under the GNU Public License V2 (GPL 2)
 
 Source code
 -----------
-See https://bitbucket.com/ajung/xmldirector.dita
+See https://github.com/xml-director/xmldirector.dita
 
 Bugtracker
 ----------
-See https://bitbucket.com/ajung/xmldirector.dita/issues
+See https://github.com/xml-director/xmldirector.dita/issues
 
 
 Author
