@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '0.0.10'
+version = '0.0.11'
 
 long_description = \
     open(os.path.join("docs", "source", "README.rst")).read() + "\n" + \
@@ -34,6 +34,7 @@ setup(name='xmldirector.dita',
           'setuptools',
           'clint',
           'requests',
+          'which',
           'plac'
       ],
       tests_require=['zope.testing'],
