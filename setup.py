@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '0.0.15'
+version = '0.0.16'
 
 long_description = \
     open(os.path.join("docs", "source", "README.rst")).read() + "\n" + \
