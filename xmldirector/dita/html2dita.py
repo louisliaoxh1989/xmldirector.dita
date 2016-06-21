@@ -9,6 +9,7 @@ import plac
 import shutil
 import tempfile
 import pkg_resources
+import tidylib
 
 from xmldirector.dita import util
 
@@ -40,9 +41,21 @@ def html2dita(html_filename, infotype='topic', output_filename=None):
     if not os.path.exists(html_filename):
         raise ValueError('No HTML input filename {} does not exist'.format(html_filename))
 
+    with open(html_filename, 'rb') as fp:
+        html_out, errors = tidylib.tidy_document(
+        fp.read(),
+        options={
+            'doctype': 'omit',
+            'output_xhtml': 1,
+            })
+
+    html_tmp = tempfile.mktemp(suffix='.html')
+    with open(html_tmp, 'wb') as fp:
+        fp.write(html_out)
+
     cmd = '"{saxon}" "{html_filename}" "{h2d_xsl}" infotype={infotype} >"{output_filename}"'.format(
             saxon=saxon,
-            html_filename=html_filename,
+            html_filename=html_tmp,
             h2d_xsl=h2d_xsl,
             infotype=infotype,
             output_filename=output_filename)

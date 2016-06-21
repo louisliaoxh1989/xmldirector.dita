@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.12 (2016/06/21)
+-------------------
+-  tidy HTML document internally
+
 0.0.11 (2016/06/21)
 -------------------
 -  added html2dita()
