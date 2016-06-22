@@ -66,7 +66,7 @@ def html2dita(html_filename, infotype='topic', output_filename=None, converter='
         fp.write(result)
 
 
-def html2dita_lxml(html, infotype='topic'):
+def html2dita_lxml(html, infotype='topic', lang='en'):
 
     if not isinstance(html, six.text_type):
         raise TypeError('HTML must be str/unicode')
@@ -90,9 +90,11 @@ def html2dita_lxml(html, infotype='topic'):
 
     root = lxml.html.fromstring(html_out)
     transform_result= transform(root)
+    transform_root = transform_result.getroot()
+    transform_root.attrib['{http://www.w3.org/XML/1998/namespace}lang'] = lang
     if transform.error_log:
         raise RuntimeError('XSLT transformation failed: {}'.format(transform.error_log))
-    return lxml.etree.tostring(transform_result, encoding='unicode', pretty_print=True)
+    return lxml.etree.tostring(transform_root, encoding='unicode', pretty_print=True)
 
 
 def html2dita_saxon(html, infotype='topic'):
