@@ -11,6 +11,7 @@ if have_xmldirector:
     import os
     from xmldirector.plonecore.transformer_registry import TransformerRegistryUtility
     from xmldirector.plonecore.validator_registry import ValidatorRegistryUtility
+    import xmldirector.dita.dx
 
     cwd = os.path.dirname(__file__)
 
