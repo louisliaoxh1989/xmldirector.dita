@@ -32,5 +32,5 @@ class IReference(model.Schema):
 
 
 class Reference(Item, dexterity_base.Mixin):
-
+    infotype = 'reference'
     implements(IReference)

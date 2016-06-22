@@ -9,11 +9,11 @@
 from xmldirector.dita.html2dita import html2dita_lxml
 
 
-def topic_modified(topic, event):
-    language = topic.Language() or 'en'
-    topic_html = topic.body.raw
-    topic.xml_set('xml_body', html2dita_lxml(
-        html=topic_html, 
-        infotype='topic',
+def dita_modified(obj, event):
+    language = obj.Language() or 'en'
+    html = obj.body.raw
+    obj.xml_set('xml_body', html2dita_lxml(
+        html=html, 
+        infotype=obj.infotype,
         lang=language))
 

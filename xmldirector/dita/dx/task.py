@@ -32,5 +32,5 @@ class ITask(model.Schema):
 
 
 class Task(Item, dexterity_base.Mixin):
-
+    infotype = 'task'
     implements(ITask)

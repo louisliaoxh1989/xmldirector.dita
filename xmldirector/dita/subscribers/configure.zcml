@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <subscriber
+      for="..dx.topic.ITopic
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.topic.ITopic
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.task.ITask
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.task.ITask
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.concept.IConcept
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.concept.IConcept
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.reference.IReference
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.dita_modified"
+    />
+
+    <subscriber
+      for="..dx.reference.IReference
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.dita_modified"
+    />
+</configure>

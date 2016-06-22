@@ -32,5 +32,6 @@ class IConcept(model.Schema):
 
 
 class Concept(Item, dexterity_base.Mixin):
+    infotype = 'concept'
 
     implements(IConcept)

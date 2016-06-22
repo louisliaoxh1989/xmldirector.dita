@@ -32,5 +32,5 @@ class ITopic(model.Schema):
 
 
 class Topic(Item, dexterity_base.Mixin):
-
+    infotype = 'topic'
     implements(ITopic)
