@@ -12,11 +12,16 @@ import pkg_resources
 import lxml.etree
 import tidylib
 
+try:
+    from shutil import which
+except ImportError:
+    from shutilwhich import which
+
 from xmldirector.dita import util
 
 
 for name in ('saxon9', 'saxon8', 'saxon7', 'saxon'):
-    saxon = shutil.which(name)
+    saxon = which(name)
     if saxon:
         break
 
@@ -67,7 +72,7 @@ def html2dita_lxml(html_filename, infotype='topic', output_filename=None):
             })
         html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
 
-    root = lxml.etree.fromstring(html_out)
+    root = lxml.html.fromstring(html_out)
     transform_result= transform(root)
     if transform.error_log:
         raise RuntimeError('XSLT transformation failed: {}'.format(transform.error_log))

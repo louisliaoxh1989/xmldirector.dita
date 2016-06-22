@@ -35,6 +35,7 @@ setup(name='xmldirector.dita',
           'clint',
           'requests',
           'pytidylib',
+          'shutilwhich',
           'plac'
       ],
       tests_require=['zope.testing'],

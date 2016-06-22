@@ -2,6 +2,18 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
+    <subscriber
+      for=".dx.topic.ITopic
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".subscribers.topic_modified"
+    />
+
+    <subscriber
+      for=".dx.topic.ITopic
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.topic_modified"
+    />
+
     <genericsetup:registerProfile
         name="default"
         title="XML-Director (DITA extensions)"
