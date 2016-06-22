@@ -43,5 +43,7 @@ setup(name='xmldirector.dita',
       dita2html=xmldirector.dita.converter:main
       dita-install=xmldirector.dita.install:main
       html2dita=xmldirector.dita.html2dita:main
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )
