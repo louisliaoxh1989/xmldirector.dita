@@ -36,6 +36,7 @@ setup(name='xmldirector.dita',
           'requests',
           'pytidylib',
           'shutilwhich',
+          'six',
           'plac'
       ],
       tests_require=['zope.testing'],

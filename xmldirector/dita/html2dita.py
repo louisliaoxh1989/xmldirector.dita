@@ -4,12 +4,15 @@
 ################################################################
 
 
+import io
+import six
 import os
 import plac
 import shutil
 import tempfile
 import pkg_resources
 import lxml.etree
+import lxml.html
 import tidylib
 
 try:
@@ -51,64 +54,85 @@ def html2dita(html_filename, infotype='topic', output_filename=None, converter='
     if not os.path.exists(html_filename):
         raise ValueError('No HTML input filename {} does not exist'.format(html_filename))
 
+    with io.open(html_filename, 'r') as fp:
+        html = fp.read()
+
     if converter == 'saxon':
-        return html2dita_saxon(html_filename, infotype, output_filename)
+        result = html2dita_saxon(html, infotype)
     elif converter == 'lxml':
-        return html2dita_lxml(html_filename, infotype, output_filename)
+        result = html2dita_lxml(html, infotype)
+
+    with io.open(output_filename, 'w') as fp:
+        fp.write(result)
 
 
-def html2dita_lxml(html_filename, infotype='topic', output_filename=None):
+def html2dita_lxml(html, infotype='topic'):
 
-    with open(h2d_xsl, 'rb') as fp:
+    if not isinstance(html, six.text_type):
+        raise TypeError('HTML must be str/unicode')
+
+    with io.open(h2d_xsl, 'rb') as fp:
         xslt_root = lxml.etree.XML(fp.read())
         transform = lxml.etree.XSLT(xslt_root)
 
-    with open(html_filename, 'rb') as fp:
-        html_out, errors = tidylib.tidy_document(
-        fp.read(),
+    html_out, errors = tidylib.tidy_document(
+        html.encode('utf8'),
         options={
             'doctype': 'omit',
             'output_xhtml': 1,
-            })
-        html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
+            'input-encoding': 'utf8',
+            'output-encoding': 'utf8',
+            'char-encoding': 'utf8',
+        })
+
+    html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
+    html_out = html_out.decode('utf8')
 
     root = lxml.html.fromstring(html_out)
     transform_result= transform(root)
     if transform.error_log:
         raise RuntimeError('XSLT transformation failed: {}'.format(transform.error_log))
-
-    with open(output_filename, 'wb') as fp:
-        fp.write(lxml.etree.tostring(transform_result, pretty_print=True))
-    return output_filename
+    return lxml.etree.tostring(transform_result, encoding='unicode', pretty_print=True)
 
 
-def html2dita_saxon(html_filename, infotype='topic', output_filename=None):
+def html2dita_saxon(html, infotype='topic'):
 
-    with open(html_filename, 'rb') as fp:
-        html_out, errors = tidylib.tidy_document(
-        fp.read(),
-        options={
-            'doctype': 'omit',
-            'output_xhtml': 1,
-            })
-        html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
+    if not isinstance(html, six.text_type):
+        raise TypeError('HTML must be str/unicode')
 
-    html_tmp = tempfile.mktemp(suffix='.html')
-    with open(html_tmp, 'wb') as fp:
+    html_out, errors = tidylib.tidy_document(
+    html.encode('utf8'),
+    options={
+        'doctype': 'omit',
+        'output_xhtml': 1,
+        'input-encoding': 'utf8',
+        'output-encoding': 'utf8',
+        'char-encoding': 'utf8',
+    })
+    html_out = html_out.replace(b' xmlns="http://www.w3.org/1999/xhtml"', b'')
+
+    html_filename = tempfile.mktemp(suffix='.html')
+    with io.open(html_filename, 'wb') as fp:
         fp.write(html_out)
 
+    output_filename = tempfile.mktemp(suffix='.html')
     cmd = '"{saxon}" "{html_filename}" "{h2d_xsl}" infotype={infotype} >"{output_filename}"'.format(
             saxon=saxon,
-            html_filename=html_tmp,
+            html_filename=html_filename,
             h2d_xsl=h2d_xsl,
             infotype=infotype,
             output_filename=output_filename)
 
     status, output = util.runcmd(cmd)
-    os.unlink(html_tmp)
     if status != 0:
         raise RuntimeError('html2dita() failed: {}'.format(output))
-    return output_filename
+
+    with io.open(output_filename, 'r') as fp:
+        topic_out = fp.read()
+
+    os.unlink(html_filename)
+    os.unlink(output_filename)
+    return topic_out
 
 
 def main():
