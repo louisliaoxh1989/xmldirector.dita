@@ -4,7 +4,7 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="XML-Director (DITA extensions1)"
+        title="XML-Director (DITA extensions)"
         directory="profiles/default"
         description="XML-Director DITA extensions"
         provides="Products.GenericSetup.interfaces.EXTENSION"
