@@ -4,7 +4,7 @@
    i18n:domain="xmldirector.dita" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">topic</property>
+  <property name="title" i18n:translate="">DITA:Topic</property>
   <property name="description"
     i18n:translate="">topic</property>
   <property name="icon_expr">string:${portal_url}/++resource++xmldirector.plonecore/images/connector_icon.png</property>
