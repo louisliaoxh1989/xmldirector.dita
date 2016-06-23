@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <browser:page
+        name="dita-map-editor"
+        for="*"
+        permission="cmf.ModifyPortalContent"
+        template="map_editor.pt"
+        class=".map_editor.MapEditor"
+        />
+
+    <browser:resourceDirectory
+        name="xmldirector.dita"
+        directory="resources"
+        />
+    
+</configure>

@@ -1,0 +1,21 @@
+<html metal:use-macro="context/main_template/macros/master">
+    <metal:slot fill-slot="javascript_head_slot">
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="++resource++xmldirector.dita/fancytree/dist/jquery.fancytree-all.min.js" type="text/javascript"></script>
+        <link href="++resource++xmldirector.dita/fancytree/dist/skin-win8/ui.fancytree.min.css" rel="stylesheet" type="text/css">
+    </metal:slot>
+    <body>
+        <div metal:fill-slot="content-core">
+            hello world
+
+            <div id="tree">
+            </div>
+
+            <script type="text/javascript">
+                $(function(){
+                  $("#tree").fancytree()
+                });
+            </script>
+        </div>
+    </body>
+</html>

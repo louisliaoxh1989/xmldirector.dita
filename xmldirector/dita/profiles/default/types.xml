@@ -4,4 +4,5 @@
   <object name="xmldirector.dita.task" meta_type="Dexterity FTI" />
   <object name="xmldirector.dita.reference" meta_type="Dexterity FTI" />
   <object name="xmldirector.dita.concept" meta_type="Dexterity FTI" />
+  <object name="xmldirector.dita.content_folder" meta_type="Dexterity FTI" />
 </object>

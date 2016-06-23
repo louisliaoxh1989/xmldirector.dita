@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
+    <include package=".browser"/>
     <include package=".subscribers"/>
 
     <genericsetup:registerProfile

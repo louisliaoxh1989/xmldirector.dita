@@ -9,7 +9,7 @@
     i18n:translate="">reference</property>
   <property name="icon_expr">string:${portal_url}/++resource++xmldirector.plonecore/images/connector_icon.png</property>
   <property name="factory">xmldirector.demo.reference</property>
-  <property name="global_allow">True</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>

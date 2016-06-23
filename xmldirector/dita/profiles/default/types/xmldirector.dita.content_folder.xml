@@ -1,22 +1,28 @@
 <?xml version="1.0"?>
-<object name="xmldirector.dita.concept"
+<object name="xmldirector.dita.content_folder"
    meta_type="Dexterity FTI"
    i18n:domain="xmldirector.dita" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">DITA:Concept</property>
+  <property name="title" i18n:translate="">DITA:Content Folder</property>
   <property name="description"
-    i18n:translate="">concept</property>
+    i18n:translate="">content_folder</property>
   <property name="icon_expr">string:${portal_url}/++resource++xmldirector.plonecore/images/connector_icon.png</property>
-  <property name="factory">xmldirector.demo.concept</property>
-  <property name="global_allow">False</property>
-  <property name="filter_content_types">False</property>
-  <property name="allowed_content_types" />
+  <property name="factory">xmldirector.dita.content_folder</property>
+  <property name="global_allow">True</property>
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+      <element value="xmldirector.dita.task"/>
+      <element value="xmldirector.dita.topic"/>
+      <element value="xmldirector.dita.concept"/>
+      <element value="xmldirector.dita.reference"/>
+      <element value="xmldirector.dita.content_folder"/>
+  </property>
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">xmldirector.dita.dx.concept.IConcept</property>
-  <property name="klass">xmldirector.dita.dx.concept.Concept</property>
+  <property name="schema">xmldirector.dita.dx.content_folder.IContentFolder</property>
+  <property name="klass">xmldirector.dita.dx.content_folder.ContentFolder</property>
 
   <!-- View information -->
   <property name="link_target"></property>
@@ -24,7 +30,7 @@
   <property name="default_view">@@view</property>
   <property name="view_methods">
    <element value="@@view"/>
-   <element value="@@concept_view"/>
+   <element value="@@content_folder"/>
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
