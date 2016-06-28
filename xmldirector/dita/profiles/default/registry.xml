@@ -1,0 +1,8 @@
+<registry>
+  <records prefix="plone.resources/plone-legacy"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="jscompilation">++resource++xmldirector.dita/fancytree/dist/jquery.fancytree-all.min.js</value>
+    <value key="deps">jquery</value>
+  </records>
+</registry>
+
