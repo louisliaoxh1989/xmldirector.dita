@@ -1,4 +1,14 @@
 <html metal:use-macro="context/main_template/macros/master">
+<<<<<<< HEAD
+=======
+    <metal:slot fill-slot="javascript_head_slot">
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        <!--
+        <script src="++resource++xmldirector.dita/fancytree/dist/jquery.fancytree-all.min.js" type="text/javascript"></script>
+        <link href="++resource++xmldirector.dita/fancytree/dist/skin-win8/ui.fancytree.min.css" rel="stylesheet" type="text/css">
+        -->
+    </metal:slot>
+>>>>>>> 4d302f1d91231247e0900427a0dffef4ac4fb7a4
     <body>
         <div metal:fill-slot="content-core">
             hello world
